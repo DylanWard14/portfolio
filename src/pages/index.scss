@@ -1,0 +1,10 @@
+// Utilities
+@import "../utilities/named_variables.scss";
+
+header {
+  width: 100%;
+  height: 2rem;
+  background: $black;
+  color: $white;
+  border-bottom: 4px solid $orange;
+}

@@ -1,0 +1,8 @@
+// Utilities
+@import "../../utilities/named_variables.scss";
+
+div:nth-child(odd) {
+  div {
+    background-color: $green;
+  }
+}
