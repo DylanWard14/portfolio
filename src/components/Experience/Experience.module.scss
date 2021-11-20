@@ -1,23 +1,26 @@
 @import "../../utilities/named_variables.scss";
 
 .component {
-  position: relative;
   .heading {
     font-size: 1.5rem;
     text-align: center;
+    margin-bottom: 2rem;
   }
 
   .list {
+    margin-left: 40%;
+    position: relative;
     &::before {
       content: "";
       position: absolute;
       width: 0.125rem;
-      height: 100%;
+      top: 1rem;
+      bottom: 1rem;
       background-color: $orange;
-      left: -0.685rem;
+      left: -1.685rem;
     }
     .item {
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
       padding-left: 1rem;
       position: relative;
       .title {
@@ -35,7 +38,9 @@
         height: 0.75rem;
         background-color: $orange;
         border-radius: 50%;
-        left: -1rem;
+        left: -2rem;
+        top: 50%;
+        transform: translate(0, -50%);
       }
     }
   }

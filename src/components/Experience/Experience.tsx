@@ -4,12 +4,20 @@ import * as styles from "./Experience.module.scss";
 
 const config = [
   {
-    title: "NDIS (Aug 2019 - present)",
+    title: "NDIS (Sept 2021 - Present)",
+    description: "Team Lead - Frontend Developer",
+  },
+  {
+    title: "NDIS (Feb 2021 - Sept 2021)",
     description: "Frontend Developer",
   },
   {
+    title: "NDIS (Aug 2019 - Feb 2021)",
+    description: "Junior Frontend Developer",
+  },
+  {
     title: "CSIRO (Feb 2019 - Aug 2019)",
-    description: "Frontend Developer",
+    description: "Software Engineer",
   },
   {
     title: "University of Canberra (Sep 2017 - Dec 2018)",
