@@ -1,0 +1,19 @@
+.component {
+  .heading {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  p {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    strong {
+      text-align: right;
+    }
+    :nth-child(2) {
+      padding-left: 1rem;
+    }
+  }
+}

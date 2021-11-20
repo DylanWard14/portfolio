@@ -8,10 +8,13 @@ import * as styles from "./index.module.scss";
 const IndexPage = () => {
   return (
     <>
-      <header className={styles.header}>Dylan Ward</header>
+      <header className={styles.header}>
+        <h1>Dylan Ward</h1>
+      </header>
       <main>
         <HomePage />
       </main>
+      <footer className={styles.footer}></footer>
     </>
   );
 };
