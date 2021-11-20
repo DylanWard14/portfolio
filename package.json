@@ -12,7 +12,8 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "generate:css": "tcm -p 'src/**/*.module.scss' ."
   },
   "dependencies": {
     "gatsby": "^4.2.0",

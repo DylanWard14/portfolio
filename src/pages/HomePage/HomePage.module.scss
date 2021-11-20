@@ -1,0 +1,7 @@
+@import "../../utilities/named_variables.scss";
+
+.component {
+  div:nth-child(odd) {
+    background-color: $green;
+  }
+}

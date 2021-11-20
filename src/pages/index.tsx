@@ -2,12 +2,12 @@ import * as React from "react";
 import HomePage from "./HomePage/HomePage";
 
 import "./reset.scss";
-import "./index.scss";
+import * as styles from "./index.module.scss";
 
 const IndexPage = () => {
   return (
     <>
-      <header>Dylan Ward</header>
+      <header className={styles.header}>Dylan Ward</header>
       <main>
         <HomePage />
       </main>
