@@ -1,7 +1,32 @@
 @import "../../utilities/named_variables.scss";
 
 .component {
-  div:nth-child(odd) {
-    background-color: $green;
+  .header {
+    color: $black;
+    margin: 1.5rem auto 2rem;
+
+    text-align: center;
+    h1 {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 0.25rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+    }
+  }
+
+  div {
+    width: 75%;
+    margin: 0 auto;
+  }
+
+  hr {
+    border: none;
+    height: 1px;
+    width: 75%;
+    margin: 2rem auto;
+    background: $orange;
   }
 }

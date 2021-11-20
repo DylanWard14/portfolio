@@ -1,0 +1,22 @@
+@import "../../utilities/named_variables.scss";
+
+.component {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  .headshot {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 2rem;
+  }
+
+  .bio {
+    color: $black;
+    font-size: 1rem;
+    line-height: 1.2;
+    font-weight: 300;
+  }
+}

@@ -2,6 +2,7 @@ import * as React from "react";
 import HomePage from "./HomePage/HomePage";
 
 import "./reset.scss";
+import "./theme.scss";
 import * as styles from "./index.module.scss";
 
 const IndexPage = () => {

@@ -1,0 +1,42 @@
+@import "../../utilities/named_variables.scss";
+
+.component {
+  position: relative;
+  .heading {
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .list {
+    &::before {
+      content: "";
+      position: absolute;
+      width: 0.125rem;
+      height: 100%;
+      background-color: $orange;
+      left: -0.685rem;
+    }
+    .item {
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      position: relative;
+      .title {
+        font-weight: bold;
+        margin-bottom: 0.25rem;
+        font-size: 1.125rem;
+      }
+      .description {
+        font-size: 1rem;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        width: 0.75rem;
+        height: 0.75rem;
+        background-color: $orange;
+        border-radius: 50%;
+        left: -1rem;
+      }
+    }
+  }
+}

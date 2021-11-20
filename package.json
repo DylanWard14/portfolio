@@ -18,6 +18,7 @@
   "dependencies": {
     "gatsby": "^4.2.0",
     "gatsby-plugin-netlify-cms": "^6.2.0",
+    "gatsby-plugin-prefetch-google-fonts": "^1.4.3",
     "gatsby-plugin-react-helmet": "^5.2.0",
     "gatsby-plugin-sass": "^5.2.0",
     "netlify-cms-app": "^2.15.59",
