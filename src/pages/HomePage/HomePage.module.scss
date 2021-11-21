@@ -17,7 +17,7 @@
     }
   }
 
-  div {
+  & > div {
     width: 75%;
     margin: 0 auto;
   }
@@ -28,5 +28,10 @@
     width: 75%;
     margin: 2rem auto;
     background: $orange;
+  }
+
+  .container {
+    display: flex;
+    justify-content: space-evenly;
   }
 }

@@ -1,45 +1,66 @@
 @import "../../utilities/named_variables.scss";
 
 .component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   .heading {
     text-align: center;
     margin-bottom: 2rem;
   }
 
   .list {
-    margin-left: 40%;
     position: relative;
-    &::before {
-      content: "";
-      position: absolute;
-      width: 0.125rem;
-      top: 1rem;
-      bottom: 1rem;
-      background-color: $orange;
-      left: -1.685rem;
-    }
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     .item {
       margin-bottom: 2rem;
       padding-left: 1rem;
       position: relative;
+      width: 75%;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        margin-right: 1rem;
+        .point {
+          width: 0.75rem;
+          height: 0.75rem;
+          border-radius: 50%;
+          background-color: $orange;
+        }
+      }
+      &:not(:last-of-type)::before {
+        content: "";
+        position: absolute;
+        width: 0.125rem;
+        height: calc(100% + 2.1rem);
+        background-color: $orange;
+        top: 50%;
+        left: 1.3125rem;
+      }
+
+      &:last-of-type::before {
+        content: "";
+        position: absolute;
+        width: 0.125rem;
+        height: calc(100% + 2rem);
+        background-color: $orange;
+        bottom: 50%;
+        left: 1.3125rem;
+      }
+
       .title {
         font-weight: bold;
         margin-bottom: 0.25rem;
         font-size: 1.125rem;
       }
+
       .description {
         font-size: 1rem;
-      }
-      &::before {
-        content: "";
-        position: absolute;
-        width: 0.75rem;
-        height: 0.75rem;
-        background-color: $orange;
-        border-radius: 50%;
-        left: -2rem;
-        top: 50%;
-        transform: translate(0, -50%);
       }
     }
   }

@@ -30,10 +30,15 @@ export const Experience = () => {
     <div className={styles.component}>
       <h2 className={styles.heading}>Experience</h2>
       <ul className={styles.list}>
-        {config.map((item) => (
-          <li className={styles.item}>
-            <p className={styles.title}>{item.title}</p>
-            <p className={styles.description}>{item.description}</p>
+        {config.map((item, index) => (
+          <li className={styles.item} key={`experience-${index}`}>
+            <div className={styles.icon}>
+              <div className={styles.point} />
+            </div>
+            <div>
+              <p className={styles.title}>{item.title}</p>
+              <p className={styles.description}>{item.description}</p>
+            </div>
           </li>
         ))}
       </ul>

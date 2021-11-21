@@ -15,9 +15,11 @@ export const HomePage = () => {
       </div>
       <Bio />
       <hr />
-      <Experience />
+      <div className={styles.container}>
+        <Experience />
+        <Contact />
+      </div>
       <hr />
-      <Contact />
     </div>
   );
 };
