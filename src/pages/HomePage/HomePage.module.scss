@@ -33,5 +33,8 @@
   .container {
     display: flex;
     justify-content: space-evenly;
+    & > div {
+      width: 50%;
+    }
   }
 }

@@ -1,18 +1,65 @@
+@import "../../utilities/named_variables.scss";
+
 .component {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   .heading {
     text-align: center;
     margin-bottom: 2rem;
   }
 
-  p {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 1rem;
-    strong {
-      text-align: right;
+  form {
+    width: 75%;
+
+    label {
+      width: 100%;
+      font-weight: bold;
+
+      .input {
+        display: block;
+        width: 100%;
+        background: $white;
+        border: 1px solid $black;
+        border-radius: 5px;
+        height: 1.5rem;
+        font-size: 1.125rem;
+        margin-top: 0.25rem;
+        margin-bottom: 0.75rem;
+
+        &.message {
+          height: 6rem;
+          resize: none;
+        }
+
+        &:active,
+        &:focus,
+        &:focus-visible {
+          border-color: darken($orange, 10%);
+          outline: none;
+        }
+      }
     }
-    :nth-child(2) {
-      padding-left: 1rem;
+    .submit {
+      border-radius: 5px;
+      border: none;
+      font-family: "Roboto";
+      background: $orange;
+      color: white;
+      font-size: 1.125rem;
+      padding: 0.5rem 1rem;
+      transition: background 200ms;
+
+      &:hover,
+      &:focus {
+        cursor: pointer;
+        background: #f78425;
+      }
+
+      &:active {
+        background: darken($orange, 10%);
+      }
     }
   }
 }
