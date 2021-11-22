@@ -22,6 +22,7 @@ export const Contact = () => {
           https://www.linkedin.com/in/dylan-w/
         </a>
       </p>
+      <input />
     </div>
   );
 };
