@@ -25,7 +25,21 @@ const config = [
   },
 ];
 
-export const Experience = () => {
+export type ExperienceData = {
+  jobTitle: string;
+  jobDescription: string;
+  startDate: Date;
+  endDate: Date | null;
+};
+
+export type ExperienceProps = {
+  loading: boolean;
+  data?: ExperienceData[];
+  error?: Error;
+};
+
+export const Experience = ({ data, loading, error }: ExperienceProps) => {
+  console.log({ data, loading, error });
   return (
     <div className={styles.component}>
       <h2 className={styles.heading}>Experience</h2>

@@ -23,7 +23,7 @@ const recentProjects: Project[] = [
   },
   {
     url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu3Pdynj96UZnR1quJ0d7UE2k0o8ZNGJqSRsHma4ixFAGz69HeF5s1DdFYk6N5u4sjUAo&usqp=CAU",
-    title: "Portfolio",
+    title: "Leaderboard API",
     description:
       "This was a gatsby project to develop this website. Built using typescript, sass and hosted on AWS lightsail instance",
   },
@@ -35,7 +35,7 @@ export const Projects = () => {
       <h2>Recent Projects</h2>
       <ul className={styles.list}>
         {recentProjects.map((project) => (
-          <li className={styles.project}>
+          <li className={styles.project} key={project.title}>
             <img src={project.url} />
             <h3 className={styles.title}>{project.title}</h3>
             <p className={styles.description}>{project.description}</p>
