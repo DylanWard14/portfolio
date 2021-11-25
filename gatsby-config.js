@@ -11,6 +11,7 @@ module.exports = {
     "gatsby-plugin-netlify-cms",
     "gatsby-plugin-sass",
     "gatsby-plugin-react-helmet",
+    "gatsby-plugin-image",
     {
       resolve: `gatsby-source-contentful`,
       options: {
