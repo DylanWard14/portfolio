@@ -23,10 +23,10 @@
         background: $white;
         border: 1px solid $black;
         border-radius: 5px;
-        height: 1.5rem;
+        height: 2rem;
         font-size: 1.125rem;
         margin-top: 0.25rem;
-        margin-bottom: 0.75rem;
+        margin-bottom: 1rem;
 
         &.message {
           height: 6rem;
@@ -60,6 +60,12 @@
       &:active {
         background: darken($orange, 10%);
       }
+    }
+  }
+
+  @media (max-width: 900px) {
+    form {
+      width: 100%;
     }
   }
 }
