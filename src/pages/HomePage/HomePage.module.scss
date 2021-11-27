@@ -36,5 +36,19 @@
     & > div {
       width: 50%;
     }
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+
+      & > div {
+        width: 100%;
+
+        &:first-of-type {
+          border-bottom: 1px solid $orange;
+          padding-bottom: 2rem;
+          margin-bottom: 2rem;
+        }
+      }
+    }
   }
 }

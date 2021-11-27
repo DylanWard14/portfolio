@@ -1,5 +1,9 @@
 @import "../utilities/named_variables.scss";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   background: $green;
   font-family: "Roboto", sans-serif;

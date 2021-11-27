@@ -19,4 +19,15 @@
     line-height: 1.2;
     font-weight: 300;
   }
+
+  @media (max-width: 900px) {
+    flex-direction: column;
+
+    .headshot {
+      width: auto;
+      max-width: 250px;
+      margin-right: 0;
+      margin-bottom: 2rem;
+    }
+  }
 }

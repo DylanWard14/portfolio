@@ -51,6 +51,10 @@
         left: 1.3125rem;
       }
 
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
       .title {
         font-weight: bold;
         margin-bottom: 0.25rem;
