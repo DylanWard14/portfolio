@@ -1,20 +1,20 @@
 import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import { graphql, useStaticQuery } from "gatsby";
 
 import Bio from "../../components/Bio/Bio";
 import Contact from "../../components/Contact/Contact";
 import Experience from "../../components/Experience/Experience";
 import Projects from "../../components/Projects/Projects";
+import { PageQueryQuery } from "../../../graphql-types";
 
 import * as styles from "./HomePage.module.scss";
 
-export const ExperienceQuery = gql`
-  query ExperienceQuery {
-    experienceCollection {
-      total
-      items {
-        jobTitle
+export const PageQuery = graphql`
+  query PageQuery {
+    allContentfulExperience(sort: { fields: startDate, order: DESC }) {
+      nodes {
         jobDescription
+        jobTitle
         startDate
         endDate
       }
@@ -23,9 +23,9 @@ export const ExperienceQuery = gql`
 `;
 
 export const HomePage = () => {
-  // TODO type the query return better
-  const experienceQuery = useQuery(ExperienceQuery);
-  console.log({ experienceQuery });
+  const pageQuery = useStaticQuery<PageQueryQuery>(PageQuery);
+  console.log({ pageQuery });
+
   return (
     <div className={styles.component}>
       <div className={styles.header}>
@@ -35,11 +35,7 @@ export const HomePage = () => {
       <Bio />
       <hr />
       <div className={styles.container}>
-        <Experience
-          data={experienceQuery.data?.experienceCollection?.items}
-          loading={experienceQuery.loading}
-          error={experienceQuery.error}
-        />
+        <Experience data={pageQuery.allContentfulExperience.nodes} />
         <Contact />
       </div>
       <hr />
