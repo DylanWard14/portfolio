@@ -19,6 +19,7 @@
     "@fontsource/roboto": "^4.5.1",
     "classnames": "^2.3.1",
     "date-fns": "^2.26.0",
+    "emailjs-com": "^3.2.0",
     "gatsby": "^4.2.0",
     "gatsby-plugin-graphql-codegen": "^3.1.0",
     "gatsby-plugin-image": "^2.2.0",
@@ -32,5 +33,6 @@
     "react-dom": "^17.0.1",
     "react-helmet": "^6.1.0",
     "sass": "^1.43.4"
-  }
+  },
+  "devDependencies": {}
 }
