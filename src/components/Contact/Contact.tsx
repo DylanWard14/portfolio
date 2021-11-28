@@ -1,24 +1,37 @@
 import React from "react";
 import classNames from "classnames/bind";
 import emailjs from "emailjs-com";
+import { useForm, SubmitHandler } from "react-hook-form";
 
 import * as styles from "./Contact.module.scss";
 
+type FormValues = {
+  from_name: string;
+  user_email: string;
+  message_subject: string;
+  message: string;
+};
+
 export const Contact = () => {
   const formRef = React.useRef<HTMLFormElement | null>(null);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting, isSubmitted },
+  } = useForm<FormValues>();
 
-  const sendEmail = React.useCallback(
-    (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-
+  const onSubmit: SubmitHandler<FormValues> = React.useCallback(
+    async (data) => {
       const serviceId = process.env.GATSBY_CONTACT_SERVICE_ID;
       const templateId = process.env.GATSBY_CONTACT_TEMPLATE_ID;
       const userId = process.env.GATSBY_CONTACT_USER_ID;
 
-      if (formRef.current && serviceId && templateId && userId) {
-        emailjs.sendForm(serviceId, templateId, formRef.current, userId).then(
+      if (serviceId && templateId && userId && !isSubmitting) {
+        return emailjs.send(serviceId, templateId, data, userId).then(
           (result) => {
             console.log(result.text);
+            reset();
           },
           (error) => {
             console.log(error.text);
@@ -26,51 +39,98 @@ export const Contact = () => {
         );
       }
     },
-    [formRef]
+    [isSubmitting, reset]
   );
 
   return (
     <div className={styles.component}>
       <h2 className={styles.heading}>Contact</h2>
-      <form ref={formRef} onSubmit={sendEmail}>
+      {isSubmitted && (
+        <p className={styles.success_message}>
+          Thank you for you enquiry, I will response ASAP.
+        </p>
+      )}
+      <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
         <label>
-          Full Name
+          <div className={styles.label_container}>
+            Full Name *
+            {errors.from_name && (
+              <p className={styles.error}>Please supply a Full Name</p>
+            )}
+          </div>
           <input
             className={styles.input}
             type="text"
-            name="from_name"
             required
+            {...register("from_name", { required: true })}
           />
         </label>
+
         <label>
-          Email
+          <div className={styles.label_container}>
+            Email *
+            {errors.user_email && (
+              <p className={styles.error}>
+                Please supply a valid Email Address
+              </p>
+            )}
+          </div>
           <input
             className={styles.input}
             type="text"
-            name="user_email"
             required
+            {...register("user_email", {
+              required: true,
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                message: "invalid email address",
+              },
+            })}
           />
         </label>
+
         <label>
-          Subject
+          <div className={styles.label_container}>
+            Subject *
+            {errors.message_subject && (
+              <p className={styles.error}>Please supply a Subject</p>
+            )}
+          </div>
           <input
             className={styles.input}
             type="text"
-            name="message_subject"
             required
+            {...register("message_subject", { required: true })}
           />
         </label>
+
         <label>
-          Message
+          <div className={styles.label_container}>
+            Message *
+            {errors.message && (
+              <p className={styles.error}>Please supply a Message</p>
+            )}
+          </div>
           <textarea
             className={classNames(styles.input, styles.message)}
-            name="message"
             required
+            {...register("message", { required: true })}
           />
         </label>
-        <button className={styles.submit} type="submit" value="Send">
-          Send Message
-        </button>
+
+        <div className={styles.label_container}>
+          <button
+            className={styles.submit}
+            type="submit"
+            value="Send"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? "Sending" : "Send Mail"}
+          </button>
+          {Object.entries(errors).length > 0 && (
+            <p className={styles.error}>Please fill in the required fields</p>
+          )}
+        </div>
       </form>
     </div>
   );

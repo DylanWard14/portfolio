@@ -10,8 +10,25 @@
     margin-bottom: 2rem;
   }
 
+  .success_message {
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
   form {
     width: 75%;
+
+    .error {
+      color: $error;
+      font-weight: normal;
+      margin-left: 1rem;
+      font-size: 0.875rem;
+    }
+
+    .label_container {
+      display: flex;
+      align-items: baseline;
+    }
 
     label {
       width: 100%;
