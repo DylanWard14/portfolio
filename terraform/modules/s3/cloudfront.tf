@@ -4,7 +4,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     origin_id = "S3-bucket-${var.domain_name}"
   }
 
-  aliases = ["${var.domain_name}.${var.domain_name}.com"]
+  aliases = [var.domain_name]
   enabled = true
   default_root_object = "index.html"
 
@@ -21,7 +21,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
         }
     }
 
-        viewer_protocol_policy = "allow-all"
+        viewer_protocol_policy = "redirect-to-https"
         min_ttl                = 0
         default_ttl            = 3600
         max_ttl                = 86400

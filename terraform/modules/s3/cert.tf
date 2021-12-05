@@ -1,6 +1,6 @@
 # Create cert
 resource "aws_acm_certificate" "app_cert" {
-  domain_name       = "${var.domain_name}.${var.domain_name}.com"
+  domain_name = var.domain_name
   validation_method = "DNS"
 
   tags = {
