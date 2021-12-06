@@ -18,6 +18,12 @@ jobs:
           node-version: 14
 
       - name: Build
+        env:
+          GATSBY_CONTACT_SERVICE_ID: ${{secrets.GATSBY_CONTACT_SERVICE_ID}}
+          GATSBY_CONTACT_TEMPLATE_ID: ${{secrets.GATSBY_CONTACT_TEMPLATE_ID}}
+          GATSBY_CONTACT_USER_ID: ${{secrets.GATSBY_CONTACT_USER_ID}}
+          CONTENTFUL_SPACE_ID: ${{secrets.CONTENTFUL_SPACE_ID}}
+          CONTENTFUL_ACCESS_TOKEN: ${{secrets.CONTENTFUL_ACCESS_TOKEN}}
         run: |
           npm install
           npm run build
