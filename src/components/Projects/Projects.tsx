@@ -36,7 +36,7 @@ export const Projects = () => {
       <ul className={styles.list}>
         {recentProjects.map((project) => (
           <li className={styles.project} key={project.title}>
-            <img src={project.url} />
+            <img src={project.url} style={{ borderRadius: "50%" }} />
             <h3 className={styles.title}>{project.title}</h3>
             <p className={styles.description}>{project.description}</p>
           </li>
