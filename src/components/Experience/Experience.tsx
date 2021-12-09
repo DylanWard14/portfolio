@@ -5,19 +5,11 @@ import { PageQueryQuery } from "../../../graphql-types";
 
 import * as styles from "./Experience.module.scss";
 
-export type ExperienceData = {
-  jobTitle: string;
-  jobDescription: string;
-  startDate: Date;
-  endDate: Date | null;
-};
-
 export type ExperienceProps = {
   data: PageQueryQuery["allContentfulExperience"]["nodes"];
 };
 
 export const Experience = ({ data }: ExperienceProps) => {
-  console.log({ data });
   return (
     <div className={styles.component}>
       <h2 className={styles.heading}>Experience</h2>

@@ -19,12 +19,23 @@ export const PageQuery = graphql`
         endDate
       }
     }
+    allContentfulProject(sort: { order: DESC, fields: createdAt }) {
+      nodes {
+        description
+        githubLink
+        projectTitle
+        image {
+          file {
+            url
+          }
+        }
+      }
+    }
   }
 `;
 
 export const HomePage = () => {
   const pageQuery = useStaticQuery<PageQueryQuery>(PageQuery);
-  console.log({ pageQuery });
 
   return (
     <div className={styles.component}>
@@ -39,7 +50,7 @@ export const HomePage = () => {
         <Contact />
       </div>
       <hr />
-      <Projects />
+      <Projects data={pageQuery.allContentfulProject.nodes} />
     </div>
   );
 };

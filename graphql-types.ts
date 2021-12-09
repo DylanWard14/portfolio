@@ -356,10 +356,34 @@ export type ContentfulReference = {
 export type ContentfulAsset = ContentfulReference & Node & {
   contentful_id: Scalars['String'];
   id: Scalars['ID'];
+  spaceId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  file?: Maybe<ContentfulAssetFile>;
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  node_locale?: Maybe<Scalars['String']>;
+  sys?: Maybe<ContentfulAssetSys>;
   gatsbyImageData?: Maybe<Scalars['JSON']>;
   parent?: Maybe<Node>;
   children: Array<Node>;
   internal: Internal;
+};
+
+
+export type ContentfulAssetCreatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ContentfulAssetUpdatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
 };
 
 
@@ -379,6 +403,28 @@ export type ContentfulAssetGatsbyImageDataArgs = {
   cropFocus?: InputMaybe<ContentfulImageCropFocus>;
   cornerRadius?: InputMaybe<Scalars['Int']>;
   quality?: InputMaybe<Scalars['Int']>;
+};
+
+export type ContentfulAssetFile = {
+  url?: Maybe<Scalars['String']>;
+  details?: Maybe<ContentfulAssetFileDetails>;
+  fileName?: Maybe<Scalars['String']>;
+  contentType?: Maybe<Scalars['String']>;
+};
+
+export type ContentfulAssetFileDetails = {
+  size?: Maybe<Scalars['Int']>;
+  image?: Maybe<ContentfulAssetFileDetailsImage>;
+};
+
+export type ContentfulAssetFileDetailsImage = {
+  width?: Maybe<Scalars['Int']>;
+  height?: Maybe<Scalars['Int']>;
+};
+
+export type ContentfulAssetSys = {
+  type?: Maybe<Scalars['String']>;
+  revision?: Maybe<Scalars['Int']>;
 };
 
 export type ImageResizingBehavior =
@@ -472,6 +518,55 @@ export type ContentfulExperienceSysContentTypeSys = {
   id?: Maybe<Scalars['String']>;
 };
 
+export type ContentfulProject = ContentfulReference & ContentfulEntry & Node & {
+  contentful_id: Scalars['String'];
+  id: Scalars['ID'];
+  node_locale: Scalars['String'];
+  projectTitle?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  githubLink?: Maybe<Scalars['String']>;
+  image?: Maybe<ContentfulAsset>;
+  spaceId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['Date']>;
+  updatedAt?: Maybe<Scalars['Date']>;
+  sys?: Maybe<ContentfulProjectSys>;
+  parent?: Maybe<Node>;
+  children: Array<Node>;
+  internal: Internal;
+};
+
+
+export type ContentfulProjectCreatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ContentfulProjectUpdatedAtArgs = {
+  formatString?: InputMaybe<Scalars['String']>;
+  fromNow?: InputMaybe<Scalars['Boolean']>;
+  difference?: InputMaybe<Scalars['String']>;
+  locale?: InputMaybe<Scalars['String']>;
+};
+
+export type ContentfulProjectSys = {
+  type?: Maybe<Scalars['String']>;
+  revision?: Maybe<Scalars['Int']>;
+  contentType?: Maybe<ContentfulProjectSysContentType>;
+};
+
+export type ContentfulProjectSysContentType = {
+  sys?: Maybe<ContentfulProjectSysContentTypeSys>;
+};
+
+export type ContentfulProjectSysContentTypeSys = {
+  type?: Maybe<Scalars['String']>;
+  linkType?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['String']>;
+};
+
 export type ContentfulContentType = Node & {
   id: Scalars['ID'];
   parent?: Maybe<Node>;
@@ -508,6 +603,8 @@ export type Query = {
   allContentfulAsset: ContentfulAssetConnection;
   contentfulExperience?: Maybe<ContentfulExperience>;
   allContentfulExperience: ContentfulExperienceConnection;
+  contentfulProject?: Maybe<ContentfulProject>;
+  allContentfulProject: ContentfulProjectConnection;
   contentfulContentType?: Maybe<ContentfulContentType>;
   allContentfulContentType: ContentfulContentTypeConnection;
 };
@@ -739,6 +836,14 @@ export type QueryAllContentfulEntryArgs = {
 export type QueryContentfulAssetArgs = {
   contentful_id?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  file?: InputMaybe<ContentfulAssetFileFilterInput>;
+  title?: InputMaybe<StringQueryOperatorInput>;
+  description?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulAssetSysFilterInput>;
   gatsbyImageData?: InputMaybe<JsonQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -775,6 +880,32 @@ export type QueryContentfulExperienceArgs = {
 export type QueryAllContentfulExperienceArgs = {
   filter?: InputMaybe<ContentfulExperienceFilterInput>;
   sort?: InputMaybe<ContentfulExperienceSortInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryContentfulProjectArgs = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  projectTitle?: InputMaybe<StringQueryOperatorInput>;
+  description?: InputMaybe<StringQueryOperatorInput>;
+  githubLink?: InputMaybe<StringQueryOperatorInput>;
+  image?: InputMaybe<ContentfulAssetFilterInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulProjectSysFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+
+export type QueryAllContentfulProjectArgs = {
+  filter?: InputMaybe<ContentfulProjectFilterInput>;
+  sort?: InputMaybe<ContentfulProjectSortInput>;
   skip?: InputMaybe<Scalars['Int']>;
   limit?: InputMaybe<Scalars['Int']>;
 };
@@ -2625,6 +2756,28 @@ export type ContentfulEntrySortInput = {
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
+export type ContentfulAssetFileFilterInput = {
+  url?: InputMaybe<StringQueryOperatorInput>;
+  details?: InputMaybe<ContentfulAssetFileDetailsFilterInput>;
+  fileName?: InputMaybe<StringQueryOperatorInput>;
+  contentType?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulAssetFileDetailsFilterInput = {
+  size?: InputMaybe<IntQueryOperatorInput>;
+  image?: InputMaybe<ContentfulAssetFileDetailsImageFilterInput>;
+};
+
+export type ContentfulAssetFileDetailsImageFilterInput = {
+  width?: InputMaybe<IntQueryOperatorInput>;
+  height?: InputMaybe<IntQueryOperatorInput>;
+};
+
+export type ContentfulAssetSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  revision?: InputMaybe<IntQueryOperatorInput>;
+};
+
 export type ContentfulAssetConnection = {
   totalCount: Scalars['Int'];
   edges: Array<ContentfulAssetEdge>;
@@ -2673,6 +2826,20 @@ export type ContentfulAssetEdge = {
 export type ContentfulAssetFieldsEnum =
   | 'contentful_id'
   | 'id'
+  | 'spaceId'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'file___url'
+  | 'file___details___size'
+  | 'file___details___image___width'
+  | 'file___details___image___height'
+  | 'file___fileName'
+  | 'file___contentType'
+  | 'title'
+  | 'description'
+  | 'node_locale'
+  | 'sys___type'
+  | 'sys___revision'
   | 'gatsbyImageData'
   | 'parent___id'
   | 'parent___parent___id'
@@ -2804,6 +2971,14 @@ export type ContentfulAssetGroupConnectionGroupArgs = {
 export type ContentfulAssetFilterInput = {
   contentful_id?: InputMaybe<StringQueryOperatorInput>;
   id?: InputMaybe<StringQueryOperatorInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  file?: InputMaybe<ContentfulAssetFileFilterInput>;
+  title?: InputMaybe<StringQueryOperatorInput>;
+  description?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulAssetSysFilterInput>;
   gatsbyImageData?: InputMaybe<JsonQueryOperatorInput>;
   parent?: InputMaybe<NodeFilterInput>;
   children?: InputMaybe<NodeFilterListInput>;
@@ -3041,6 +3216,283 @@ export type ContentfulExperienceSortInput = {
   order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
 };
 
+export type ContentfulProjectSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  revision?: InputMaybe<IntQueryOperatorInput>;
+  contentType?: InputMaybe<ContentfulProjectSysContentTypeFilterInput>;
+};
+
+export type ContentfulProjectSysContentTypeFilterInput = {
+  sys?: InputMaybe<ContentfulProjectSysContentTypeSysFilterInput>;
+};
+
+export type ContentfulProjectSysContentTypeSysFilterInput = {
+  type?: InputMaybe<StringQueryOperatorInput>;
+  linkType?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+};
+
+export type ContentfulProjectConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulProjectEdge>;
+  nodes: Array<ContentfulProject>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulProjectGroupConnection>;
+};
+
+
+export type ContentfulProjectConnectionDistinctArgs = {
+  field: ContentfulProjectFieldsEnum;
+};
+
+
+export type ContentfulProjectConnectionMaxArgs = {
+  field: ContentfulProjectFieldsEnum;
+};
+
+
+export type ContentfulProjectConnectionMinArgs = {
+  field: ContentfulProjectFieldsEnum;
+};
+
+
+export type ContentfulProjectConnectionSumArgs = {
+  field: ContentfulProjectFieldsEnum;
+};
+
+
+export type ContentfulProjectConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulProjectFieldsEnum;
+};
+
+export type ContentfulProjectEdge = {
+  next?: Maybe<ContentfulProject>;
+  node: ContentfulProject;
+  previous?: Maybe<ContentfulProject>;
+};
+
+export type ContentfulProjectFieldsEnum =
+  | 'contentful_id'
+  | 'id'
+  | 'node_locale'
+  | 'projectTitle'
+  | 'description'
+  | 'githubLink'
+  | 'image___contentful_id'
+  | 'image___id'
+  | 'image___spaceId'
+  | 'image___createdAt'
+  | 'image___updatedAt'
+  | 'image___file___url'
+  | 'image___file___details___size'
+  | 'image___file___fileName'
+  | 'image___file___contentType'
+  | 'image___title'
+  | 'image___description'
+  | 'image___node_locale'
+  | 'image___sys___type'
+  | 'image___sys___revision'
+  | 'image___gatsbyImageData'
+  | 'image___parent___id'
+  | 'image___parent___parent___id'
+  | 'image___parent___parent___children'
+  | 'image___parent___children'
+  | 'image___parent___children___id'
+  | 'image___parent___children___children'
+  | 'image___parent___internal___content'
+  | 'image___parent___internal___contentDigest'
+  | 'image___parent___internal___description'
+  | 'image___parent___internal___fieldOwners'
+  | 'image___parent___internal___ignoreType'
+  | 'image___parent___internal___mediaType'
+  | 'image___parent___internal___owner'
+  | 'image___parent___internal___type'
+  | 'image___children'
+  | 'image___children___id'
+  | 'image___children___parent___id'
+  | 'image___children___parent___children'
+  | 'image___children___children'
+  | 'image___children___children___id'
+  | 'image___children___children___children'
+  | 'image___children___internal___content'
+  | 'image___children___internal___contentDigest'
+  | 'image___children___internal___description'
+  | 'image___children___internal___fieldOwners'
+  | 'image___children___internal___ignoreType'
+  | 'image___children___internal___mediaType'
+  | 'image___children___internal___owner'
+  | 'image___children___internal___type'
+  | 'image___internal___content'
+  | 'image___internal___contentDigest'
+  | 'image___internal___description'
+  | 'image___internal___fieldOwners'
+  | 'image___internal___ignoreType'
+  | 'image___internal___mediaType'
+  | 'image___internal___owner'
+  | 'image___internal___type'
+  | 'spaceId'
+  | 'createdAt'
+  | 'updatedAt'
+  | 'sys___type'
+  | 'sys___revision'
+  | 'sys___contentType___sys___type'
+  | 'sys___contentType___sys___linkType'
+  | 'sys___contentType___sys___id'
+  | 'parent___id'
+  | 'parent___parent___id'
+  | 'parent___parent___parent___id'
+  | 'parent___parent___parent___children'
+  | 'parent___parent___children'
+  | 'parent___parent___children___id'
+  | 'parent___parent___children___children'
+  | 'parent___parent___internal___content'
+  | 'parent___parent___internal___contentDigest'
+  | 'parent___parent___internal___description'
+  | 'parent___parent___internal___fieldOwners'
+  | 'parent___parent___internal___ignoreType'
+  | 'parent___parent___internal___mediaType'
+  | 'parent___parent___internal___owner'
+  | 'parent___parent___internal___type'
+  | 'parent___children'
+  | 'parent___children___id'
+  | 'parent___children___parent___id'
+  | 'parent___children___parent___children'
+  | 'parent___children___children'
+  | 'parent___children___children___id'
+  | 'parent___children___children___children'
+  | 'parent___children___internal___content'
+  | 'parent___children___internal___contentDigest'
+  | 'parent___children___internal___description'
+  | 'parent___children___internal___fieldOwners'
+  | 'parent___children___internal___ignoreType'
+  | 'parent___children___internal___mediaType'
+  | 'parent___children___internal___owner'
+  | 'parent___children___internal___type'
+  | 'parent___internal___content'
+  | 'parent___internal___contentDigest'
+  | 'parent___internal___description'
+  | 'parent___internal___fieldOwners'
+  | 'parent___internal___ignoreType'
+  | 'parent___internal___mediaType'
+  | 'parent___internal___owner'
+  | 'parent___internal___type'
+  | 'children'
+  | 'children___id'
+  | 'children___parent___id'
+  | 'children___parent___parent___id'
+  | 'children___parent___parent___children'
+  | 'children___parent___children'
+  | 'children___parent___children___id'
+  | 'children___parent___children___children'
+  | 'children___parent___internal___content'
+  | 'children___parent___internal___contentDigest'
+  | 'children___parent___internal___description'
+  | 'children___parent___internal___fieldOwners'
+  | 'children___parent___internal___ignoreType'
+  | 'children___parent___internal___mediaType'
+  | 'children___parent___internal___owner'
+  | 'children___parent___internal___type'
+  | 'children___children'
+  | 'children___children___id'
+  | 'children___children___parent___id'
+  | 'children___children___parent___children'
+  | 'children___children___children'
+  | 'children___children___children___id'
+  | 'children___children___children___children'
+  | 'children___children___internal___content'
+  | 'children___children___internal___contentDigest'
+  | 'children___children___internal___description'
+  | 'children___children___internal___fieldOwners'
+  | 'children___children___internal___ignoreType'
+  | 'children___children___internal___mediaType'
+  | 'children___children___internal___owner'
+  | 'children___children___internal___type'
+  | 'children___internal___content'
+  | 'children___internal___contentDigest'
+  | 'children___internal___description'
+  | 'children___internal___fieldOwners'
+  | 'children___internal___ignoreType'
+  | 'children___internal___mediaType'
+  | 'children___internal___owner'
+  | 'children___internal___type'
+  | 'internal___content'
+  | 'internal___contentDigest'
+  | 'internal___description'
+  | 'internal___fieldOwners'
+  | 'internal___ignoreType'
+  | 'internal___mediaType'
+  | 'internal___owner'
+  | 'internal___type';
+
+export type ContentfulProjectGroupConnection = {
+  totalCount: Scalars['Int'];
+  edges: Array<ContentfulProjectEdge>;
+  nodes: Array<ContentfulProject>;
+  pageInfo: PageInfo;
+  distinct: Array<Scalars['String']>;
+  max?: Maybe<Scalars['Float']>;
+  min?: Maybe<Scalars['Float']>;
+  sum?: Maybe<Scalars['Float']>;
+  group: Array<ContentfulProjectGroupConnection>;
+  field: Scalars['String'];
+  fieldValue?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentfulProjectGroupConnectionDistinctArgs = {
+  field: ContentfulProjectFieldsEnum;
+};
+
+
+export type ContentfulProjectGroupConnectionMaxArgs = {
+  field: ContentfulProjectFieldsEnum;
+};
+
+
+export type ContentfulProjectGroupConnectionMinArgs = {
+  field: ContentfulProjectFieldsEnum;
+};
+
+
+export type ContentfulProjectGroupConnectionSumArgs = {
+  field: ContentfulProjectFieldsEnum;
+};
+
+
+export type ContentfulProjectGroupConnectionGroupArgs = {
+  skip?: InputMaybe<Scalars['Int']>;
+  limit?: InputMaybe<Scalars['Int']>;
+  field: ContentfulProjectFieldsEnum;
+};
+
+export type ContentfulProjectFilterInput = {
+  contentful_id?: InputMaybe<StringQueryOperatorInput>;
+  id?: InputMaybe<StringQueryOperatorInput>;
+  node_locale?: InputMaybe<StringQueryOperatorInput>;
+  projectTitle?: InputMaybe<StringQueryOperatorInput>;
+  description?: InputMaybe<StringQueryOperatorInput>;
+  githubLink?: InputMaybe<StringQueryOperatorInput>;
+  image?: InputMaybe<ContentfulAssetFilterInput>;
+  spaceId?: InputMaybe<StringQueryOperatorInput>;
+  createdAt?: InputMaybe<DateQueryOperatorInput>;
+  updatedAt?: InputMaybe<DateQueryOperatorInput>;
+  sys?: InputMaybe<ContentfulProjectSysFilterInput>;
+  parent?: InputMaybe<NodeFilterInput>;
+  children?: InputMaybe<NodeFilterListInput>;
+  internal?: InputMaybe<InternalFilterInput>;
+};
+
+export type ContentfulProjectSortInput = {
+  fields?: InputMaybe<Array<InputMaybe<ContentfulProjectFieldsEnum>>>;
+  order?: InputMaybe<Array<InputMaybe<SortOrderEnum>>>;
+};
+
 export type ContentfulContentTypeSysFilterInput = {
   type?: InputMaybe<StringQueryOperatorInput>;
 };
@@ -3242,4 +3694,4 @@ export type ContentfulContentTypeSortInput = {
 export type PageQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type PageQueryQuery = { allContentfulExperience: { nodes: Array<{ jobDescription?: string | null | undefined, jobTitle?: string | null | undefined, startDate?: any | null | undefined, endDate?: any | null | undefined }> } };
+export type PageQueryQuery = { allContentfulExperience: { nodes: Array<{ jobDescription?: string | null | undefined, jobTitle?: string | null | undefined, startDate?: any | null | undefined, endDate?: any | null | undefined }> }, allContentfulProject: { nodes: Array<{ description?: string | null | undefined, githubLink?: string | null | undefined, projectTitle?: string | null | undefined, image?: { file?: { url?: string | null | undefined } | null | undefined } | null | undefined }> } };

@@ -1,43 +1,27 @@
 import React from "react";
 
+import { PageQueryQuery } from "../../../graphql-types";
+
 import * as styles from "./Projects.module.scss";
 
-export type Project = {
-  url: string;
-  title: string;
-  description: string;
+export type ProjectsProps = {
+  data: PageQueryQuery["allContentfulProject"]["nodes"];
 };
 
-const recentProjects: Project[] = [
-  {
-    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu3Pdynj96UZnR1quJ0d7UE2k0o8ZNGJqSRsHma4ixFAGz69HeF5s1DdFYk6N5u4sjUAo&usqp=CAU",
-    title: "Portfolio",
-    description:
-      "This was a gatsby project to develop this website. Built using typescript, sass and hosted on AWS lightsail instance",
-  },
-  {
-    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu3Pdynj96UZnR1quJ0d7UE2k0o8ZNGJqSRsHma4ixFAGz69HeF5s1DdFYk6N5u4sjUAo&usqp=CAU",
-    title: "Movie Finder",
-    description:
-      "This was a gatsby project to develop this website. Built using typescript, sass and hosted on AWS lightsail instance",
-  },
-  {
-    url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu3Pdynj96UZnR1quJ0d7UE2k0o8ZNGJqSRsHma4ixFAGz69HeF5s1DdFYk6N5u4sjUAo&usqp=CAU",
-    title: "Leaderboard API",
-    description:
-      "This was a gatsby project to develop this website. Built using typescript, sass and hosted on AWS lightsail instance",
-  },
-];
-
-export const Projects = () => {
+export const Projects = ({ data }: ProjectsProps) => {
   return (
     <div className={styles.component}>
       <h2>Recent Projects</h2>
       <ul className={styles.list}>
-        {recentProjects.map((project) => (
-          <li className={styles.project} key={project.title}>
-            <img src={project.url} style={{ borderRadius: "50%" }} />
-            <h3 className={styles.title}>{project.title}</h3>
+        {data.map((project) => (
+          <li className={styles.project} key={project.projectTitle}>
+            <a href={project.githubLink!} className={styles.image}>
+              <img
+                src={project.image?.file?.url!}
+                alt={`Image of ${project.projectTitle} project.`}
+              />
+              <h3 className={styles.title}>{project.projectTitle}</h3>
+            </a>
             <p className={styles.description}>{project.description}</p>
           </li>
         ))}
