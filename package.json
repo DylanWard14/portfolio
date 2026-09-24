@@ -36,5 +36,8 @@
     "react-hook-form": "^7.20.4",
     "sass": "^1.43.4"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "engines": {
+    "node": ">=22"
+  }
 }
