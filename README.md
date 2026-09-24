@@ -6,7 +6,7 @@ This is a portfolio website built with Gatsby and Typescript.
 
 ## Live Link
 
-This application is hosted at [Portfolio](https://dylan-ward-portfolio.netlify.app/).
+This application is deployed as a static-assets Cloudflare Worker (see `wrangler.jsonc`) by the GitHub Actions workflow on every push to `main`.
 
 ## Author
 
