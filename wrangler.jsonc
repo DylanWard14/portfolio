@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "portfolio",
+  "compatibility_date": "2026-09-24",
+  // Static-only Worker: serves the Gatsby build output, no script needed.
+  "assets": {
+    "directory": "./public",
+    "not_found_handling": "404-page"
+  }
+}

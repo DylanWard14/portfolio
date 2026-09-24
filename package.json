@@ -13,7 +13,8 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "generate:css": "tcm -p 'src/**/*.module.scss' ."
+    "generate:css": "tcm -p 'src/**/*.module.scss' .",
+    "deploy": "gatsby build && npx wrangler deploy"
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.1",
